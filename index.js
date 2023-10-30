@@ -47,7 +47,19 @@ function _makeRoomName(length) {
   }
   return result;
 }
-
+function _getClients(){
+  let clientData = []
+  for (let i = 0; i < clients.length; i++) {
+      clientData.push({
+        'name': clients[i]['name'],
+        'avatar': clients[i]['avatar']
+      })
+  }
+  operator.send(JSON.stringify({
+    type: 'LOAD_CLIENTS',
+    clients:  clientData,
+  }))
+}
 function _nextClient(){
   const client = clients.shift();
   const roomName = "room_"+_makeRoomName(7);
@@ -75,6 +87,9 @@ function _onMessageReceive(data, socket, request){
   switch (data['type']) {
     case "NEXT_CLIENT":
       _nextClient();
+      break;
+    case "GET_CLIENTS":
+      _getClients();
       break;
     default: 
       break;
