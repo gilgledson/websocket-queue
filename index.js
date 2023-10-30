@@ -107,6 +107,11 @@ clientServer.on('connection', function connection(_) {
   clientServer.on('error', console.error);
 });
 
+app.get('/', (req, res) => {
+  res.write(`<h1>Socket IO Start on Port : ${PORT}</h1>`);
+  res.end();
+});
+
 server.on('upgrade', function upgrade(request, socket, head) {
   const { pathname, query } = Url.parse(request.url, {parseQueryString: true});
   if (pathname === '/client') {
