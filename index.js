@@ -20,7 +20,7 @@ function _onAdddNewClient(socket, request){
   socket.send(JSON.stringify(
       {
         "queue_position":  clients.length,
-        "room_name:":  null,
+        "room_name":  null,
         "room_token":  null
       },
     ),
@@ -67,13 +67,13 @@ function _nextClient(){
   const roomName = "room_"+_makeRoomName(7);
   client.socket.send(JSON.stringify({
     "queue_position":  0,
-    "room_name:":  roomName,
+    "room_name":  roomName,
     "room_token":  null
   }));
   operator.send(JSON.stringify({
     "type": "JOIN_ROOM",
     "room": {
-      "room_name:":  roomName,
+      "room_name":  roomName,
       "room_token":  null
     }
   }))
@@ -84,7 +84,7 @@ function _notifyClientPosition(){
   clients.forEach((queueClient, index) => {
     queueClient['socket'].send(JSON.stringify({
       "queue_position":  index+1,
-      "room_name:":  null,
+      "room_name":  null,
       "room_token":  null
     }))
   });
