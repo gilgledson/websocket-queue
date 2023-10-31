@@ -71,8 +71,11 @@ function _nextClient(){
     "room_token":  null
   }));
   operator.send(JSON.stringify({
-    "room_name:":  roomName,
-    "room_token":  null
+    "type": "JOIN_ROOM",
+    "room": {
+      "room_name:":  roomName,
+      "room_token":  null
+    }
   }))
   _notifyClientPosition();
 }
