@@ -48,6 +48,7 @@ function _makeRoomName(length) {
   return result;
 }
 function _getClients(){
+  if(operator == null) return;
   let clientData = []
   for (let i = 0; i < clients.length; i++) {
       clientData.push({
@@ -55,6 +56,7 @@ function _getClients(){
         'avatar': clients[i]['avatar']
       })
   }
+
   operator.send(JSON.stringify({
     type: 'LOAD_CLIENTS',
     clients:  clientData,
