@@ -129,7 +129,7 @@ clientServer.on('connection', function connection(socket) {
     clients = clients.filter(c => c.socket !== socket);
     _getClients()
     _notifyClientPosition()
-    socket.close()
+    socket.terminate()
   });
   clientServer.on('error', console.error);
 });
