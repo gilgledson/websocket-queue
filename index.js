@@ -72,7 +72,10 @@ function _nextClient(){
     "room_name:":  roomName,
     "room_token":  null
   }))
+  _notifyClientPosition();
+}
 
+function _notifyClientPosition(){
   clients.forEach((queueClient, index) => {
     queueClient['socket'].send(JSON.stringify({
       "queue_position":  index+1,
@@ -81,6 +84,7 @@ function _nextClient(){
     }))
   });
 }
+
 
 function _onMessageReceive(data, socket, request){
   console.log(data['type'])
@@ -122,6 +126,7 @@ clientServer.on('connection', function connection(socket) {
   socket.on('close', () => {
     clients = clients.filter(c => c.socket !== socket);
     _getClients()
+    _notifyClientPosition()
   });
   clientServer.on('error', console.error);
 });
