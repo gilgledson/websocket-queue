@@ -78,6 +78,7 @@ function _nextClient(){
     }
   }))
   _notifyClientPosition();
+  _getClients()
 }
 
 function _notifyClientPosition(){
