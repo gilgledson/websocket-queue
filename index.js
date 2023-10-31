@@ -129,6 +129,7 @@ clientServer.on('connection', function connection(socket) {
     clients = clients.filter(c => c.socket !== socket);
     _getClients()
     _notifyClientPosition()
+    socket.close()
   });
   clientServer.on('error', console.error);
 });
