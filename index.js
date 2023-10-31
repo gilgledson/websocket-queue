@@ -118,7 +118,11 @@ operatorServer.on('connection', function connection(socket) {
     operatorServer.on('error', console.error);
 });
 
-clientServer.on('connection', function connection(_) {
+clientServer.on('connection', function connection(socket) {
+  socket.on('close', () => {
+    clients = clients.filter(c => c.socket !== socket);
+    _getClients()
+  });
   clientServer.on('error', console.error);
 });
 
